@@ -9,6 +9,10 @@ RUN mvn -q -B clean package -DskipTests
 # --- Ejecución ---
 FROM eclipse-temurin:21-jre
 WORKDIR /app
+
+ARG SERVER_PORT=8081
+ENV SPRING_PROFILES_ACTIVE=prod SERVER_PORT=${SERVER_PORT}
+EXPOSE ${SERVER_PORT}
+
 COPY --from=build /src/target/sonidovivo-0.0.1-SNAPSHOT.jar app.jar
-EXPOSE 8081
 ENTRYPOINT ["java", "-Xmx512m", "-jar", "app.jar"]

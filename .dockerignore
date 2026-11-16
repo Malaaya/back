@@ -1,0 +1,7 @@
+.git
+.venv
+target
+documentos
+.env
+.env.*
+!.env.example
